@@ -1,6 +1,5 @@
 package com.bookstore.jpa.models;
 
-
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -18,14 +17,15 @@ public class BookModel implements Serializable {
     private UUID id;
 
     @Column(nullable = false, unique = true)
-    private String tittle;
+    private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "publisher_id")
     private PublisherModel publisher;
 
-
-    @ManyToMany
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany//(fetch = FetchType.LAZY)
     @JoinTable(
             name = "tb_book_author",
             joinColumns = @JoinColumn(name = "book_id"),
@@ -35,6 +35,7 @@ public class BookModel implements Serializable {
     @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
     private ReviewModel review;
 
+
     public UUID getId() {
         return id;
     }
@@ -43,12 +44,12 @@ public class BookModel implements Serializable {
         this.id = id;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public PublisherModel getPublisher() {

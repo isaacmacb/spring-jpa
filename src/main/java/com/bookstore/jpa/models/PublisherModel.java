@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-
 @Entity
 @Table(name = "TB_PUBLISHER")
 public class PublisherModel implements Serializable {
@@ -22,7 +21,7 @@ public class PublisherModel implements Serializable {
     private String name;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
     private Set<BookModel> books = new HashSet<>();
 
 
